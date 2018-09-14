@@ -2,9 +2,6 @@ package com.comp.myth.notekeeper;
 
 import java.util.List;
 
-/**
- * Created by Jim.
- */
 
 public final class CourseInfo {
     private final String mCourseId;

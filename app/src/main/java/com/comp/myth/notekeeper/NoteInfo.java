@@ -1,8 +1,5 @@
 package com.comp.myth.notekeeper;
 
-/**
- * Created by Jim.
- */
 
 public final class NoteInfo {
     private CourseInfo mCourse;
