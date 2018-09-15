@@ -1,16 +1,20 @@
 package com.comp.myth.notekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
+    public static final String NOTE_INFO = "com.myth.NOTE_INFO";
+    private NoteInfo mNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,24 @@ public class NoteActivity extends AppCompatActivity {
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(arrayAdapter);
+        readDisplayStateValues();
+        EditText title = findViewById(R.id.text_note_title);
+        EditText text = findViewById(R.id.text_note_text);
+        displayNote(sp, title, text);
+
+    }
+
+    private void displayNote(Spinner sp, EditText title, EditText text) {
+        List<CourseInfo> courses = DataManager.getInstance().getCourses();
+        int index = courses.indexOf(mNote.getCourse());
+        sp.setSelection(index);
+        title.setText(mNote.getTitle());
+        text.setText(mNote.getText());
+    }
+
+    private void readDisplayStateValues() {
+        Intent intent = getIntent();
+        mNote = intent.getParcelableExtra(NOTE_INFO);
     }
 
     @Override
