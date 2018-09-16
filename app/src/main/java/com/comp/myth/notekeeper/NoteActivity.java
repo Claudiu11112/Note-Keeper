@@ -13,8 +13,9 @@ import android.widget.Spinner;
 import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
-    public static final String NOTE_INFO = "com.myth.NOTE_INFO";
+    public static final String NOTE_POSITION = "com.myth.NOTE_POSITION";
     private NoteInfo mNote;
+    private boolean isNewNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,9 @@ public class NoteActivity extends AppCompatActivity {
         readDisplayStateValues();
         EditText title = findViewById(R.id.text_note_title);
         EditText text = findViewById(R.id.text_note_text);
-        displayNote(sp, title, text);
+
+        if (!isNewNote)
+            displayNote(sp, title, text);
 
     }
 
@@ -45,7 +48,10 @@ public class NoteActivity extends AppCompatActivity {
 
     private void readDisplayStateValues() {
         Intent intent = getIntent();
-        mNote = intent.getParcelableExtra(NOTE_INFO);
+        int position = intent.getIntExtra(NOTE_POSITION, -1);
+        isNewNote = position == -1;
+        if (!isNewNote)
+            mNote = DataManager.getInstance().getNotes().get(position);
     }
 
     @Override
