@@ -2,6 +2,7 @@
   <dictionary name="myth">
     <words>
       <w>constr</w>
+      <w>initializers</w>
       <w>notekeeper</w>
     </words>
   </dictionary>

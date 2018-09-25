@@ -8,8 +8,8 @@ import java.util.Objects;
 public class DataManager {
     private static DataManager ourInstance = null;
 
-    private List<CourseInfo> mCourses = new ArrayList<>();
-    private List<NoteInfo> mNotes = new ArrayList<>();
+    private final List<CourseInfo> mCourses = new ArrayList<>();
+    private final List<NoteInfo> mNotes = new ArrayList<>();
 
     private DataManager() {
     }
@@ -31,7 +31,7 @@ public class DataManager {
         return "jimw@jwhh.com";
     }
 
-    public List<NoteInfo> getNotes() {
+    List<NoteInfo> getNotes() {
         return mNotes;
     }
 
@@ -54,7 +54,7 @@ public class DataManager {
         mNotes.remove(index);
     }
 
-    public List<CourseInfo> getCourses() {
+    List<CourseInfo> getCourses() {
         return mCourses;
     }
 
@@ -97,7 +97,7 @@ public class DataManager {
         final DataManager dm = getInstance();
 
         CourseInfo course = dm.getCourse("android_intents");
-        Objects.requireNonNull(course.getModule("android_intents_m01")).setComplete(true);
+        Objects.requireNonNull(Objects.requireNonNull(course).getModule("android_intents_m01")).setComplete(true);
         Objects.requireNonNull(course.getModule("android_intents_m02")).setComplete(true);
         Objects.requireNonNull(course.getModule("android_intents_m03")).setComplete(true);
         mNotes.add(new NoteInfo(course, "Dynamic intent resolution",
@@ -106,7 +106,7 @@ public class DataManager {
                 "PendingIntents are powerful; they delegate much more than just a component invocation"));
 
         course = dm.getCourse("android_async");
-        Objects.requireNonNull(course.getModule("android_async_m01")).setComplete(true);
+        Objects.requireNonNull(Objects.requireNonNull(course).getModule("android_async_m01")).setComplete(true);
         Objects.requireNonNull(course.getModule("android_async_m02")).setComplete(true);
         mNotes.add(new NoteInfo(course, "Service default threads",
                 "Did you know that by default an Android Service will tie up the UI thread?"));
@@ -114,7 +114,7 @@ public class DataManager {
                 "Foreground Services can be tied to a notification icon"));
 
         course = dm.getCourse("java_lang");
-        Objects.requireNonNull(course.getModule("java_lang_m01")).setComplete(true);
+        Objects.requireNonNull(Objects.requireNonNull(course).getModule("java_lang_m01")).setComplete(true);
         Objects.requireNonNull(course.getModule("java_lang_m02")).setComplete(true);
         Objects.requireNonNull(course.getModule("java_lang_m03")).setComplete(true);
         Objects.requireNonNull(course.getModule("java_lang_m04")).setComplete(true);
@@ -127,9 +127,9 @@ public class DataManager {
                 "Anonymous classes simplify implementing one-use types"));
 
         course = dm.getCourse("java_core");
-        course.getModule("java_core_m01").setComplete(true);
-        course.getModule("java_core_m02").setComplete(true);
-        course.getModule("java_core_m03").setComplete(true);
+        Objects.requireNonNull(Objects.requireNonNull(course).getModule("java_core_m01")).setComplete(true);
+        Objects.requireNonNull(course.getModule("java_core_m02")).setComplete(true);
+        Objects.requireNonNull(course.getModule("java_core_m03")).setComplete(true);
         mNotes.add(new NoteInfo(course, "Compiler options",
                 "The -jar option isn't compatible with with the -cp option"));
         mNotes.add(new NoteInfo(course, "Serialization",
