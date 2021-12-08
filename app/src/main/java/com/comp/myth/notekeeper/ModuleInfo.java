@@ -7,7 +7,7 @@ import android.os.Parcelable;
 public final class ModuleInfo implements Parcelable {
     private final String mModuleId;
     private final String mTitle;
-    private boolean mIsComplete = false;
+    private boolean mIsComplete;
 
     public final static Parcelable.Creator<ModuleInfo> CREATOR =
             new Parcelable.Creator<ModuleInfo>() {
