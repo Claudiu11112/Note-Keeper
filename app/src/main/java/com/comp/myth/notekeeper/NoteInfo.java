@@ -4,6 +4,7 @@ package com.comp.myth.notekeeper;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 public final class NoteInfo implements Parcelable {
     private CourseInfo mCourse;
     private String mTitle;
